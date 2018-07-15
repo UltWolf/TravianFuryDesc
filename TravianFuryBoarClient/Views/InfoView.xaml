@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravianFuryBoarClient.Views"
         mc:Ignorable="d"
-        Title="InfoView" Height="300" Width="300">
-    <Grid>
-        
+        Title="InfoView" Height="300" Width="800.682">
+    
+    <Grid HorizontalAlignment="Right" Width="438">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="78*"/>
+            <RowDefinition Height="191*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="530*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Delete" Width="120px" Height="20px" VerticalAlignment="Top" Command="{Binding DeleteCommand}" Grid.Column="1" Margin="30,2,255,0">
+        </Button>
+        <Button Name="SyncButton" Content="Sync" Width="120px" Height="20px" VerticalAlignment="Top" Command="{Binding SyncCommand}" Margin="-97,2,10,0">
+          
+        </Button>
+        <Label Name="SendIs" Margin="-346,-1,241,53" Content="{Binding Path=NumberVillages}"></Label>
+        <ListView Margin="-346,25,10,10" Name="lvUsers" ItemsSource="{Binding Path = Villages}" 
+            SelectedItem="{Binding Path = Village, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="150" DisplayMemberBinding="{Binding Villageid}" />
+                    <GridViewColumn Header="Название деревни" Width="200" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Популяция" Width="150" DisplayMemberBinding="{Binding Population}" />
+                    <GridViewColumn Header="Заброшенная?" Width="150" DisplayMemberBinding="{Binding IsAbounded}" />
+                    <GridViewColumn Header="Нация" Width="200">
+
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Nation}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+      
     </Grid>
+
+
 </Window>

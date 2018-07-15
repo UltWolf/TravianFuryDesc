@@ -1,4 +1,5 @@
 ﻿
+using System.IO;
 using System.Windows;
 
 using TravianFuryBoarClient.ViewModels;
@@ -10,12 +11,16 @@ namespace TravianFuryBoarClient.Views
     /// </summary>
     public partial class FarmView : Window
     {
-        public FarmView()
+        public FarmView(string token)
         {
             
             InitializeComponent();
-            var fv = new FarmViewModel();
+            var fv = new FarmViewModel(token);
             DataContext = fv;
         }
+
+       
+
+       
     }
 }

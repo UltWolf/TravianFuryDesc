@@ -15,10 +15,11 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="TravianFury" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="217,59,240,85"> </TextBlock>
+        <TextBox  Name ="KeyLabel" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="187,104,186,35" Background="Orange" Width="144" Height="20" Grid.Row="1"/>
+        <TextBlock Text="TravianFury" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="217,59,240,85"></TextBlock>
         <Button Width="140px" Height="20px" Content="Калькулятор" Margin="70,110,48,30"></Button>
-        <Button Width="140px" Height="20px" Padding="1px" Content="Фарм" Grid.Column="1" Grid.Row="0" Margin="24,110,95,30"></Button>
+        <Button Width="140px" Height="20px" Padding="1px" Content="Фарм" Grid.Column="1" Grid.Row="0" Margin="24,110,95,30" Click="Button_Click"></Button>
         <Button Width="140px" Height="20px" Padding="1px" Content="Информация" Grid.ColumnSpan="2" Grid.Row="1" Margin="191,20,186,119"></Button>
-        
+
     </Grid>
 </Window>

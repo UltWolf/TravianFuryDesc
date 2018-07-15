@@ -13,7 +13,9 @@ namespace TravianFuryBoarClient.Models
     [Serializable]
     public class Village
     {
+
         #region parametres
+        private string _playerName;
         //Village id for attacking
         private uint _villageid;
         //VillagesName
@@ -88,9 +90,11 @@ namespace TravianFuryBoarClient.Models
             }
         }
 
-    #endregion
+        public string PlayerName { get => _playerName; set { _playerName = value; OnPropertyChanged("PlayerName"); } }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyname)
         {
             if (PropertyChanged != null)
@@ -98,5 +102,7 @@ namespace TravianFuryBoarClient.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
+
+      
     }
 }

@@ -8,6 +8,7 @@ namespace TravianFuryBoarClient.Models
 {
     class Troop
     {
+        public static Troop example;
         public string Name;
         public double WoodPrice;
         public double IronPrice;

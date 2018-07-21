@@ -40,7 +40,6 @@
                             IsSynchronizedWithCurrentItem="True"
                             ItemsSource="{Binding Villages}"
                             SelectedValue="{Binding Village, Mode=TwoWay }"
-                          
                             Text="variable" Grid.ColumnSpan="2" Margin="71,0,24,28">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -63,7 +62,6 @@
         <TextBox Grid.Row="1" Grid.Column="1"  Text ="{Binding Path = Troop_4}" Background="Orange"  Width="20px" Margin="67,47,11,0" />
         <TextBox Grid.Row="1" Grid.Column="2"  Text ="{Binding Path = Troop_5}" Background="Orange"  Width="20px" Margin="5,47,72,0" />
         <TextBox Grid.Row="1" Grid.Column="2"  Text ="{Binding Path = Troop_6}" Background="Orange"  Width="20px" RenderTransformOrigin="0.55,2.45" Margin="39,47,38,0"/>
-        <Button Grid.Row="2" Content="CycleSend"  Command="{Binding CycleAttack}" Margin="17,27,15,17" Grid.Column="1"/>
         <Button Grid.Row="0" Content="Add Village" Margin="15,58,5,54" Command="{Binding AddCommand}" Grid.RowSpan="2"></Button>
 
 

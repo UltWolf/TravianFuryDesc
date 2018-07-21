@@ -2,7 +2,7 @@
 
 using System.Windows.Input;
 
-namespace TravianFuryBoarClient.ViewModels
+namespace TravianFuryBoarClient.ViewModels.Components
 {
     public class RelayCommand : System.Windows.Input.ICommand
     {

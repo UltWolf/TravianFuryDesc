@@ -14,10 +14,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TravianFuryBoarClient.Data.Nation;
 using TravianFuryBoarClient.Models;
+using TravianFuryBoarClient.ViewModels.Components;
 
 namespace TravianFuryBoarClient.ViewModels
 {
-    class InfoViewModel : Village, INotifyPropertyChanged
+    class InfoViewModel : BaseViewModel
     {
         MemoryStream ms;
         private string token;
@@ -44,20 +45,27 @@ namespace TravianFuryBoarClient.ViewModels
 
         public void DeleteVillage(object obj)
         {
-            string[] cordinates = File.ReadAllText("VillagesID.info").Split(';');
-            List<String> oldCollection = cordinates.ToList();
-            oldCollection.Remove(Village.Villageid.ToString());
-            oldCollection.Remove("");
-            File.Delete("VillagesID.info");
-            using (FileStream fs = new FileStream("VillagesInfo.info", FileMode.Create))
-            {
-                fs.Write(new byte[2], 0, 0);
-            }
+  using (FileStream fs = new FileStream("Villages.dat", FileMode.Open))
+                {
+                    try
+                    {
+                        Villages = (ObservableCollection<Village>)bf.Deserialize(fs);
+                    }
+                    catch(Exception e ){
 
-            foreach (var c in oldCollection)
-            {
-                File.AppendAllText("VillagesID.info", c + ";");
-            }
+                    }
+                }
+        Villages.Remove(Village);
+    using (FileStream fs = new FileStream("Villages.dat", FileMode.Open))
+                {
+                    try
+                    {
+                        bf.Serialize(fs,Villages);
+                    }
+                    catch(Exception e ){
+
+                    }
+                }
             LoadVillages();
         }
         public void LoadVillages()
@@ -84,7 +92,7 @@ namespace TravianFuryBoarClient.ViewModels
             thr.Start();
 
         }
-        public async Task SyncTask(object obj)
+        public async void SyncTask(object obj)
         {
             Villages = new ObservableCollection<Village>();
             OnPropertyChanged("Villages");
@@ -173,7 +181,6 @@ namespace TravianFuryBoarClient.ViewModels
 
                 bf.Serialize(fs, NewCollection);
 
-              
             }
 
                 NumberVillages = NewCollection.Count.ToString();

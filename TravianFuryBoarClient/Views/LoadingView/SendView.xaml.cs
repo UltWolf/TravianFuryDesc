@@ -27,16 +27,11 @@ namespace TravianFuryBoarClient.Views
     /// </summary>
     public partial class SendView : Window
     {
-       
-
         public SendView(string units,string key,MyVillages sourceVillage)
         {
-            
             InitializeComponent();
-            
             Thread tr = new Thread(()=>SendUnits(units,key, sourceVillage));
             tr.Start();
-           
         }
 
         public void sendArmy(string unitsRequest, string key, MyVillages sourceVillage,BinaryFormatter bf, ObservableCollection<Village> Villages)
@@ -84,7 +79,6 @@ namespace TravianFuryBoarClient.Views
                         {
                             response.Close();
                             Dispatcher.Invoke(() => ErrorLabel.Content = "Ooops, we have some problem");
-                            
                             using (FileStream fs = new FileStream("EndingVillage.data", FileMode.Create,FileAccess.Write))
                             {
                                 ObservableCollection<Village> lastVillages = new ObservableCollection<Village>();

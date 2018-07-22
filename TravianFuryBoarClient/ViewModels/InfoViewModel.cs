@@ -20,7 +20,7 @@ namespace TravianFuryBoarClient.ViewModels
 {
     class InfoViewModel : BaseViewModel
     {
-        MemoryStream ms;
+        
         private string token;
         private BinaryFormatter bf;
         private string _numberVillages = "";

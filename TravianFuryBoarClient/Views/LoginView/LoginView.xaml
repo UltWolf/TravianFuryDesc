@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="1" Text="Login" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 40 10 10"></TextBlock>
         <TextBox Text="{Binding Path=Username}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200px" Height="26"></TextBox>
-        <TextBox Text="{Binding Path=Password}" Margin="20 120 20 0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200px" Height="26">></TextBox>
-        <Button  Command = "{Binding Path = AutorizationCommand}"Content="Let`s go" FontSize="24px" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="40" Width="200" BorderThickness="5,1" ClipToBounds="True" ></Button>
+        <TextBox Text="{Binding Path=Password}" Margin="20 120 20 0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200px" Height="26"></TextBox>
+        <Button  Command = "{Binding Path = AutorizationCommand}" Content="Let`s go" FontSize="24px" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Height="40" Width="200" BorderThickness="5,1" ClipToBounds="True" ></Button>
     </Grid>
 </Window>

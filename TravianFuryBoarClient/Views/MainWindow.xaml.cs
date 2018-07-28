@@ -54,5 +54,19 @@ namespace TravianFuryBoarClient
         {
             File.WriteAllText("TokenInfo.info", KeyLabel.Text);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            RegistrationView rw = new RegistrationView();
+            rw.Show();
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            LoginToolsView LTV = new LoginToolsView();
+            LTV.Show();
+            this.Close();
+        }
     }
 }

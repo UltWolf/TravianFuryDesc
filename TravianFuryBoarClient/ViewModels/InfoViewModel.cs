@@ -182,11 +182,8 @@ namespace TravianFuryBoarClient.ViewModels
                 bf.Serialize(fs, NewCollection);
 
             }
-
                 NumberVillages = NewCollection.Count.ToString();
                 LoadVillages();
-
-
             }
 
         }

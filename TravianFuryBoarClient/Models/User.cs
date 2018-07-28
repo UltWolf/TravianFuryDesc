@@ -1,10 +1,10 @@
 namespace TravianFuryBoarClient.Models
 {
-    public class User
+   public class UserProfile
     {
-        public int ProfileId { get; set; }  
-        public string Username { get; set; }    
-        public string Password { get; set; }    
-        public string LastToken { get; set; }
+    public string ProfileId { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string Server { get; set; }
     }
 }

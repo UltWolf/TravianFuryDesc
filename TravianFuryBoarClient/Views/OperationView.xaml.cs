@@ -11,19 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TravianFuryBoarClient.ViewModels.LoginViewModels;
+using TravianFuryBoarClient.ViewModels;
 
 namespace TravianFuryBoarClient.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationView.xaml
+    /// Логика взаимодействия для OperationView.xaml
     /// </summary>
-    public partial class RegistrationView : Window
+    public partial class OperationView : Window
     {
-        public RegistrationView()
+        public OperationView(System.Net.CookieCollection token)
         {
+
             InitializeComponent();
-            this.DataContext = new RegistrationViewModel(this);
+            this.DataContext = new OperationViewModel(token);
         }
     }
 }

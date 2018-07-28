@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravianFuryBoarClient.ViewModels.LoginViewModels;
 
 namespace TravianFuryBoarClient.Views
 {
@@ -22,6 +23,7 @@ namespace TravianFuryBoarClient.Views
         public LoginView()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel(this);
         }
     }
 }

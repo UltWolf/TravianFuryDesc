@@ -11,19 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TravianFuryBoarClient.ViewModels.LoginViewModels;
 
 namespace TravianFuryBoarClient.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationView.xaml
+    /// Логика взаимодействия для LoginTravianView.xaml
     /// </summary>
-    public partial class RegistrationView : Window
+    public partial class LoginTravianView : Window
     {
-        public RegistrationView()
+        public LoginTravianView()
         {
             InitializeComponent();
-            this.DataContext = new RegistrationViewModel(this);
         }
     }
 }

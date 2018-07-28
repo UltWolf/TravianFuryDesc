@@ -34,11 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.10\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -47,6 +52,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Vse.Web.Serialization, Version=1.0.4.0, Culture=neutral, PublicKeyToken=fb838febb49f46b2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vse.Web.Serialization.ControlledSerializationJsonConverter.1.0.4\lib\net45\Vse.Web.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -59,13 +67,25 @@
     <Compile Include="Models\MyVillages.cs" />
     <Compile Include="Models\ParserListVillages.cs" />
     <Compile Include="ViewModels\Components\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoginToolsViewModel.cs" />
+    <Compile Include="ViewModels\LoginTravianViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\OperationViewModel.cs" />
     <Compile Include="Views\LoadingView\SendView.xaml.cs">
       <DependentUpon>SendView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoginToolsView.xaml.cs">
+      <DependentUpon>LoginToolsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginTravianView.xaml.cs">
+      <DependentUpon>LoginTravianView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OperationView.xaml.cs">
+      <DependentUpon>OperationView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\LoadingView\AnalyzeView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +97,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginToolsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginTravianView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView\LoginView.xaml">
@@ -91,6 +119,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\VillageOperation.cs" />
     <Compile Include="Data\Nation\Nation.cs" />
     <Compile Include="Models\PlayerResponseParser.cs" />
     <Compile Include="Models\PostRequestToServer.cs" />
@@ -100,6 +130,7 @@
     <Compile Include="ViewModels\FarmViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\Components\RelayCommand.cs" />
+    <Compile Include="ViewModels\Components\BaseLoginViewModel.cs" />
     <Compile Include="Views\LoadingView\AnalyzeView.xaml.cs">
       <DependentUpon>AnalyzeView.xaml</DependentUpon>
     </Compile>
@@ -123,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OperationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

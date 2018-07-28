@@ -7,7 +7,7 @@ namespace TravianFuryBoarClient.ViewModels.Components
     {
         public MemoryStream ms = new MemoryStream();
 
-        public string url;
+        public string url= "https://localhost:5001/";
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyname)
         {

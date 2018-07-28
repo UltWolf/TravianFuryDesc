@@ -7,6 +7,7 @@ using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TravianFuryBoarClient.Data.Nation;
 using TravianFuryBoarClient.Models;
@@ -39,6 +40,7 @@ namespace TravianFuryBoarClient.ViewModels
 
         private MyVillages _village;
         private string _error;
+        private string ProfileID;
         public string Key { get { return _key; } set { _key = value; OnPropertyChanged("Key"); } }
         public ICommand GetCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
@@ -69,7 +71,7 @@ namespace TravianFuryBoarClient.ViewModels
 
 
 
-        public FarmViewModel(string token)
+        public FarmViewModel(FarmView FV,string token)
         {
             Key = token;
             bf = new BinaryFormatter();
@@ -79,8 +81,32 @@ namespace TravianFuryBoarClient.ViewModels
         
             ChangeKeyCommand = new RelayCommand(ChangeToken);
             InfoCommand = new RelayCommand(OpenInfo);
+            ProfileID = GetProfileId();
+            if(ProfileID ==""){
+                FV.Close();
+                RegistrationView RV = new RegistrationView();
+                RV.Show();
+            }
             GetListVillages();
         }
+
+        public string GetProfileId(){
+            try{
+       using(FileStream fs =  new FileStream("UserProfile.dat",FileMode.Open)){
+    BinaryFormatter bf = new BinaryFormatter();
+       var b = (UserProfile)bf.Deserialize(fs);
+       return b.ProfileId;
+}
+            }
+            catch(FileNotFoundException ex){
+              string message = "You don`t create profile, on our server";
+              string caption = "Error Detected";
+              MessageBox.Show(message,caption);
+              return "";
+            }
+        }
+
+
         public void ChangeToken(object obj)
         {
             File.WriteAllText("TokenInfo.info", Key);

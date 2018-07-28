@@ -15,7 +15,7 @@ namespace TravianFuryBoarClient.Views
         {
             
             InitializeComponent();
-            var fv = new FarmViewModel(token);
+            var fv = new FarmViewModel(this,token);
             DataContext = fv;
         }
 

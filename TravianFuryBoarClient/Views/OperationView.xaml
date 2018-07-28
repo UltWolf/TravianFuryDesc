@@ -1,0 +1,36 @@
+﻿<Window x:Class="TravianFuryBoarClient.Views.OperationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravianFuryBoarClient.Views"
+        mc:Ignorable="d"
+        Title="OperationView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140*"></RowDefinition>
+            <RowDefinition Height="279*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Please input url your operation " HorizontalAlignment="Center" Margin="168,0,183,0"/>
+        <TextBox Text="{Binding Path=URL}" Margin="168,69,156,41" Background="Black" Foreground="#FFF3EFEF" />
+        <TextBlock Text="{Binding Token}" Width="200" Height="100" Grid.Column="1" Margin="54,10,10,30"></TextBlock>
+        <Button Content="Get" Command="{Binding GetOperationsCommand}" Margin="54,28,10,206" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="Send" Grid.Row="1" Grid.Column="1" Width="200" Height="40" Margin="54,110,10,129"></Button>
+        <ListView Margin="44,10,10,24" Name="lvUsers" ItemsSource="{Binding Path = Vil}" 
+            SelectedItem="{Binding Path = Village, Mode=TwoWay}" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Source Village" Width="150" DisplayMemberBinding="{Binding SourceVillage}" />
+                    <GridViewColumn Header="Destination Village" Width="200" DisplayMemberBinding="{Binding DestinationVillage}" />
+                    <GridViewColumn Header="Type Attack" Width="150" DisplayMemberBinding="{Binding TypeAttack}" />
+                    <GridViewColumn Header=" Time" Width="150" DisplayMemberBinding="{Binding  Time}" />
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

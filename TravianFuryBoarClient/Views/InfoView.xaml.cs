@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using TravianFuryBoarClient.Models;
 using TravianFuryBoarClient.ViewModels;
 
 namespace TravianFuryBoarClient.Views
@@ -14,10 +14,12 @@ namespace TravianFuryBoarClient.Views
     /// </summary>
     public partial class InfoView : Window
     {
-        public InfoView(string token)
+        public InfoView(string Key, string UrlServer, DefaultUser DU)
         {
             InitializeComponent();
-            DataContext = new InfoViewModel(token);
+            DataContext = new InfoViewModel(this,Key,UrlServer, DU);
         }
+
+        
     }
 }

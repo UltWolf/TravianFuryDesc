@@ -5,23 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravianFuryBoarClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="389" Width="525">
+    <Grid Margin="0,0,0,7">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="59*"></RowDefinition>
+            <RowDefinition Height="58*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBox  Name ="KeyLabel" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="187,104,186,35" Background="Orange" Width="144" Height="20" Grid.Row="1"/>
-        <TextBlock Text="TravianFury" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="229,10,228,134"></TextBlock>
-        <Button Width="140px" Height="20px" Content="Login" Margin="70,10,48,30"></Button>
-        <Button Grid.Column="1" Width="140px" Height="20px" Content="Registration" Margin="40,60,79,80" Click="Button_Click_1"></Button>
-        <Button Width="140px" Height="20px" Content="Калькулятор" Margin="70,110,48,30"></Button>
-        <Button Width="140px" Height="20px" Padding="1px" Content="Фарм" Grid.Column="1" Grid.Row="0" Margin="40,110,79,30" Click="Button_Click"></Button>
-        <Button Width="140px" Height="20px" Padding="1px" Content="Информация" Grid.Row="1" Margin="40,0,79,139" Grid.Column="1"/>
-        <Button Width="140px" Height="20px" Padding="1px" Content="Опера" Margin="70,0,48,139" Grid.Row="1" Click="Button_Click_2"></Button>
+        <ComboBox           Name="UserBox"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="Auto"
+                            Height="Auto"
+                            MinWidth="100"
+                            VerticalAlignment="Bottom"
+                            IsSynchronizedWithCurrentItem="True"
+                             
+                            Text="variable" Margin="85,0,10,113" SelectionChanged="UserBox_SelectionChanged">
+            
+        </ComboBox>
+        <TextBox  Name ="HeroLabel" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="187,39,186,115" Background="Orange" Width="144" Height="20" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <TextBox  Name ="ServerLabel"   Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="187,75,186,79" Background="Orange" Width="144" Height="20" Grid.Row="1"/>
+        <TextBox  Name ="KeyLabel"  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="187,111,186,43" Background="Orange" Width="144" Height="20" Grid.Row="1"/>
+        <TextBlock Text="TravianFury" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="229,20,228,141" Height="16" Width="60"></TextBlock>
+        <Button Content="Login" Margin="70,68,48,88"/>
+        <Button Grid.Column="1" Content="Registration" Margin="40,68,79,88" Click="Button_Click_1"/>
+        <Button Content="Калькулятор" Margin="70,118,48,38"/>
+        <Button Padding="1px" Content="Фарм" Grid.Column="1" Grid.Row="0" Margin="40,118,79,38" Click="Button_Click"/>
+        <Button Padding="1px" Content="Информация" Grid.Row="1" Margin="40,8,79,147" Grid.Column="1"/>
+        <Button Padding="1px" Content="Опера" Margin="70,8,48,147" Grid.Row="1" Click="Button_Click_2"/>
+        <Button Content="Save" Grid.ColumnSpan="2" Margin="187,141,192,0" Grid.Row="1" Click="Button_Click_3"/>
     </Grid>
 </Window>

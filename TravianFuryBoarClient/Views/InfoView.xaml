@@ -3,46 +3,104 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		 xmlns:e="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:TravianFuryBoarClient.Views"
         mc:Ignorable="d"
         Title="InfoView" Height="300" Width="800.682">
-    
-    <Grid HorizontalAlignment="Right" Width="438">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="78*"/>
-            <RowDefinition Height="191*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="43*"/>
-            <ColumnDefinition Width="530*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Delete" Width="120px" Height="20px" VerticalAlignment="Top" Command="{Binding DeleteCommand}" Grid.Column="1" Margin="30,2,255,0">
-        </Button>
-        <Button Name="SyncButton" Content="Sync" Width="120px" Height="20px" VerticalAlignment="Top" Command="{Binding SyncCommand}" Margin="-97,2,10,0">
-          
-        </Button>
-        <Label Name="SendIs" Margin="-346,-1,241,53" Content="{Binding Path=NumberVillages}"></Label>
-        <ListView Margin="-346,25,10,10" Name="lvUsers" ItemsSource="{Binding Path = Villages}" 
-            SelectedItem="{Binding Path = Village, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" Width="150" DisplayMemberBinding="{Binding Villageid}" />
-                    <GridViewColumn Header="Название деревни" Width="200" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Популяция" Width="150" DisplayMemberBinding="{Binding Population}" />
-                    <GridViewColumn Header="Заброшенная?" Width="150" DisplayMemberBinding="{Binding IsAbounded}" />
-                    <GridViewColumn Header="Нация" Width="200">
 
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Nation}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-      
-    </Grid>
+	<Grid HorizontalAlignment="Right" Width="438">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="27*"/>
+			<RowDefinition Height="242*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="43*"/>
+			<ColumnDefinition Width="530*"/>
+		</Grid.ColumnDefinitions>
+		<Button Content="Set" Grid.Column="1" Margin="257,1,76,5" Command="{Binding SetCommand}"/>
+		<Button Content="Delete" Height="20px" VerticalAlignment="Top" Command="{Binding DeleteCommand}" Margin="-152,2,132,0"/>
+		<Button Name="SyncButton" Content="Sync" Height="20px" VerticalAlignment="Top" Command="{Binding SyncCommand}" Margin="-227,2,190,0"/>
+		<Button Content="Save and Close" Height="20px" VerticalAlignment="Top" Command="{Binding SaveAndCloseCommand}" Margin="-94,2,41,0"/>
+		<TextBox    Text ="{Binding Path = Troop_1}" Background="Orange" Width="20" Height="20" Grid.Column="1" Grid.Row="0" Margin="96,3,289,4" RenderTransformOrigin="-0.15,0.15"/>
+		<TextBox    Text ="{Binding Path = Troop_2}" Background="Orange" Width="20" Height="20"  Grid.Column="1" Grid.Row="0" Margin="121,3,264,4" RenderTransformOrigin="0.667,0.03" />
+		<TextBox Grid.Row="0"  Text ="{Binding Path = Troop_3}"   Width="20" Height="20" Background="Orange"   Grid.Column="1" Margin="146,3,239,4"    />
+		<TextBox Grid.Row="0"    Text ="{Binding Path = Troop_4}" Width="20" Height="20" Background="Orange" Grid.Column="1" Margin="171,2,214,5"   />
+		<TextBox Grid.Row="0"    Text ="{Binding Path = Troop_5}" Width="20" Height="20" Background="Orange" Grid.Column="1" Margin="196,2,189,5" RenderTransformOrigin="-0.45,0.517"   />
+		<TextBox Grid.Row="0"   Text ="{Binding Path = Troop_6}"  Width="20" Height="20" Background="Orange" Grid.Column="1" Margin="221,2,164,5" />
+		<Label Name="SendIs" Margin="-346,2,265,11" Content="{Binding Path=NumberVillages}"/>
+		<DataGrid Margin="-346,1,10,10" Name="lvUsers" ItemsSource="{Binding Path = Villages}" 
+            SelectedItem="{Binding Path = Village, Mode=TwoWay}" Grid.ColumnSpan="2" 
+			AutoGenerateColumns="False" Grid.Row="1"   >
+			<e:Interaction.Triggers>
+
+				<e:EventTrigger   EventName="CellEditEnding" >
+					<e:InvokeCommandAction Command="{  Binding  ChangeValueCommand}" />
+				</e:EventTrigger>
+			</e:Interaction.Triggers>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Id" Width="90 "  Binding="{Binding Villageid}"   />
+				<DataGridTextColumn Header="Название деревни" Width="200"  Binding="{Binding Name}" />
+				<DataGridTextColumn Header="Популяция" Width="70" Binding="{Binding Population}" />
+				<DataGridTextColumn   Header="1 "  Width="25"  Binding ="{Binding Troop_1  , Mode=TwoWay}"   >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\1.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn     Header="2 " Width="25"  Binding="{Binding Troop_2,Mode=TwoWay}"  >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\2.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="3" Width="25"  Binding ="{Binding Troop_3 ,Mode=TwoWay}"   >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\3.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="4" Width="25"  Binding="{Binding Troop_4,Mode=TwoWay}"  >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\4.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="5" Width="25"  Binding ="{Binding Troop_5,Mode=TwoWay }"  >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\5.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+				<DataGridTextColumn Header="6" Width="25"  Binding="{Binding Troop_6,Mode=TwoWay}"  >
+					<DataGridTextColumn.HeaderTemplate>
+						<DataTemplate>
+							<Image Source="C:\Users\ctrat\Projects\TravianFuryDesc\TravianFuryBoarClient\Data\Troops\Img\Germanics\6.png"  Height="12" Width="12" />
+						</DataTemplate>
+					</DataGridTextColumn.HeaderTemplate>
+				</DataGridTextColumn>
+				<DataGridCheckBoxColumn  IsReadOnly="True"     Header="Alive" Width="60"  Binding="{Binding IsAbounded}" />
+				<DataGridCheckBoxColumn  IsReadOnly="True"     Header="Original" Width="60"  Binding="{Binding Original}" />
+				<DataGridTemplateColumn Header="Tribe" Width="40"  IsReadOnly="True">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Image Source="{Binding urlIcon}"   />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+			</DataGrid.Columns>
+
+
+
+		</DataGrid>
+
+	</Grid>
 
 
 </Window>

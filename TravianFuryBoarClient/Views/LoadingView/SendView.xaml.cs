@@ -27,14 +27,26 @@ namespace TravianFuryBoarClient.Views
     /// </summary>
     public partial class SendView : Window
     {
-        public SendView(string units,string key,MyVillages sourceVillage)
+        private string PathToProfileDirectory;
+        private Boolean Attack = true ;
+        private string key;
+        private string IDHero ;
+        private string ServerUrl;
+        public SendView(  DefaultUser DU,MyVillages sourceVillage)
         {
+            key = DU.LastToken;
+            IDHero = DU.Portrait;
+            ServerUrl = DU.URLServer;
+           
+            PathToProfileDirectory = System.IO.Path.Combine("Profiles", IDHero);
             InitializeComponent();
-            Thread tr = new Thread(()=>SendUnits(units,key, sourceVillage));
+            Thread tr = new Thread(()=>SendUnits( DU, sourceVillage));
+          
+            
             tr.Start();
         }
 
-        public void sendArmy(string unitsRequest, string key, MyVillages sourceVillage,BinaryFormatter bf, ObservableCollection<Village> Villages)
+        public void sendArmy(  string key, MyVillages sourceVillage,BinaryFormatter bf, ObservableCollection<Village> Villages)
         {
             int i = 0;
             foreach (var Village in Villages)
@@ -46,13 +58,14 @@ namespace TravianFuryBoarClient.Views
                 });
 
                 string actionRequest = "{\"controller\":\"troops\",\"action\":\"send\",";
+                string unitsRequest = $"\"1\":{Village.Troop_1},\"2\":{Village.Troop_2},\"3\":{Village.Troop_3},\"4\":{Village.Troop_4},\"5\":{Village.Troop_5},\"6\":{Village.Troop_6}";
                 string wrapLeft = "{";
                 string wrapRight = "}";
                 string paramsRequest = "\"params\":{ \"destVillageId\":\"" + Village.Villageid + "\",\"villageId\":" + sourceVillage.VillageId + ",\"movementType\":4,\"redeployHero\":false,\"units\":{";
 
                 string sessionKey = "}},\"session\":\"" + key + "\"}";
                 string fullrequest = actionRequest + paramsRequest + unitsRequest + sessionKey;
-                WebRequest WR = WebRequest.Create("https://ru5.kingdoms.com/api/?");
+                WebRequest WR = WebRequest.Create(ServerUrl +"api/?");
                 WR.Method = "POST";
                 Dispatcher.Invoke(() =>
                 {
@@ -79,7 +92,7 @@ namespace TravianFuryBoarClient.Views
                         {
                             response.Close();
                             Dispatcher.Invoke(() => ErrorLabel.Content = "Ooops, we have some problem");
-                            using (FileStream fs = new FileStream("EndingVillage.data", FileMode.Create,FileAccess.Write))
+                            using (FileStream fs = new FileStream(PathToProfileDirectory + "\\EndingVillage.data", FileMode.Create,FileAccess.Write))
                             {
                                 ObservableCollection<Village> lastVillages = new ObservableCollection<Village>();
                                 for (; i < Villages.Count; i++)
@@ -120,29 +133,29 @@ namespace TravianFuryBoarClient.Views
 
        
 
-        public void SendUnits(string unitsRequest, string key, MyVillages sourceVillage)
+        public void SendUnits(  DefaultUser DU, MyVillages sourceVillage)
         {
             var bf = new BinaryFormatter();
             ObservableCollection<Village> Villages = new ObservableCollection<Village>();
             try
             {
-                using (FileStream fs = new FileStream("EndingVillage.data", FileMode.Open))
+                using (FileStream fs = new FileStream(PathToProfileDirectory + "\\EndingVillage.data", FileMode.Open))
                 {
                     try
                     {
                         Villages = (ObservableCollection<Village>)bf.Deserialize(fs);
                         fs.Dispose();
-                        File.Delete("EndingVillage.data");
+                        File.Delete(PathToProfileDirectory + "\\EndingVillage.data");
                         if (Villages.Count == 0)
                         {
                            
-                            using (FileStream fsVillages = new FileStream("Villages.dat", FileMode.Open))
+                            using (FileStream fsVillages = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
                             {
                                 Villages = (ObservableCollection<Village>)bf.Deserialize(fsVillages);
                             }
                         }
                        
-                            sendArmy(unitsRequest, key, sourceVillage, bf, Villages);
+                            sendArmy(  key, sourceVillage, bf, Villages);
                         
 
                     }
@@ -150,11 +163,11 @@ namespace TravianFuryBoarClient.Views
                     {
                         fs.Dispose();
                         File.Delete("EndingVillage.data");
-                        using (FileStream fsVillages = new FileStream("Villages.dat", FileMode.Open))
+                        using (FileStream fsVillages = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
                         {
                             Villages = (ObservableCollection<Village>)bf.Deserialize(fsVillages);
                         }
-                        sendArmy(unitsRequest, key, sourceVillage, bf, Villages);
+                        sendArmy( key, sourceVillage, bf, Villages);
                     }
                 }
             }
@@ -162,12 +175,12 @@ namespace TravianFuryBoarClient.Views
             {
                 try
                 {
-                    using (FileStream fs = new FileStream("Villages.dat", FileMode.Open))
+                    using (FileStream fs = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
                     {
                         try
                         {
                             Villages = (ObservableCollection<Village>)bf.Deserialize(fs);
-                            sendArmy(unitsRequest, key, sourceVillage, bf, Villages);
+                            sendArmy(  key, sourceVillage, bf, Villages);
                         }
                         catch (Exception f)
                         {
@@ -198,6 +211,88 @@ namespace TravianFuryBoarClient.Views
                
         }
 
-               
+        public void Stop() {
+            Attack = false;
+        }
+        public void SendUnitsCycle(string unitsRequest, DefaultUser DU, MyVillages sourceVillage)
+        {
+            while (Attack)
+            {
+                var bf = new BinaryFormatter();
+                ObservableCollection<Village> Villages = new ObservableCollection<Village>();
+                try
+                {
+                    using (FileStream fs = new FileStream(PathToProfileDirectory + "\\EndingVillage.data", FileMode.Open))
+                    {
+                        try
+                        {
+                            Villages = (ObservableCollection<Village>)bf.Deserialize(fs);
+                            fs.Dispose();
+                            File.Delete(PathToProfileDirectory + "\\EndingVillage.data");
+                            if (Villages.Count == 0)
+                            {
+
+                                using (FileStream fsVillages = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
+                                {
+                                    Villages = (ObservableCollection<Village>)bf.Deserialize(fsVillages);
+                                }
+                            }
+
+                            sendArmy(  key, sourceVillage, bf, Villages);
+
+
+                        }
+                        catch (System.Runtime.Serialization.SerializationException e)
+                        {
+                            fs.Dispose();
+                            File.Delete("EndingVillage.data");
+                            using (FileStream fsVillages = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
+                            {
+                                Villages = (ObservableCollection<Village>)bf.Deserialize(fsVillages);
+                            }
+                            sendArmy(  key, sourceVillage, bf, Villages);
+                        }
+                    }
+                }
+                catch (FileNotFoundException e)
+                {
+                    try
+                    {
+                        using (FileStream fs = new FileStream(PathToProfileDirectory + "\\Villages.dat", FileMode.Open))
+                        {
+                            try
+                            {
+                                Villages = (ObservableCollection<Village>)bf.Deserialize(fs);
+                                sendArmy(  key, sourceVillage, bf, Villages);
+                            }
+                            catch (Exception f)
+                            {
+
+                            }
+                        }
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            FromLabel.Content = "";
+                            ToLabel.Content = "";
+                            ErrorLabel.Content = "We can`t find your list with village";
+                        });
+
+
+                        Thread.Sleep(2000);
+                        Dispatcher.Invoke(() =>
+                        {
+                            this.Close();
+                        });
+
+                    }
+                }
+
+            }
+
+        }
+
     }
 }

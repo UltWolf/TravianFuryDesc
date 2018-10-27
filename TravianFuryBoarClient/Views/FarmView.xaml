@@ -19,7 +19,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Content="{Binding Path = Error}"  Margin="0,0,1,46" Grid.Row="1" Grid.Column="1"/>
-        <TextBox Grid.Row="1" Width="50"      Text="{Binding Path= SourceIdVillage}" HorizontalAlignment="Left" Margin="5,42,0,0" Background="Orange"/>
+        
         <TextBox Grid.Row="0" Grid.Column="0"  Text ="{Binding Path = AddIdVillage}" Background="Orange" Margin="6,24,94,23" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -55,13 +55,10 @@
         <Button Grid.Row="2" Margin="15,27,11,17" Content="Info" Command="{Binding InfoCommand}" RenderTransformOrigin="0.5,0.5">
 
         </Button>
-        <Button Grid.Row="2" Grid.Column="2" Margin="10,27,24,17" Content="Send" Command="{Binding AttackCommand}"/>
-        <TextBox Grid.Row="1" Grid.Column="0"  Text ="{Binding Path = Troop_1}" Background="Orange" Width="20px" Margin="60,47,17,0"/>
-        <TextBox Grid.Row="1" Grid.Column="0"  Text ="{Binding Path = Troop_2}" Background="Orange" Width="20px" Grid.ColumnSpan="2" Margin="96,47,79,0" />
-        <TextBox Grid.Row="1" Grid.Column="1"  Text ="{Binding Path = Troop_3}" Background="Orange"  Width="20px" Margin="33,47,45,0"/>
-        <TextBox Grid.Row="1" Grid.Column="1"  Text ="{Binding Path = Troop_4}" Background="Orange"  Width="20px" Margin="67,47,11,0" />
-        <TextBox Grid.Row="1" Grid.Column="2"  Text ="{Binding Path = Troop_5}" Background="Orange"  Width="20px" Margin="5,47,72,0" />
-        <TextBox Grid.Row="1" Grid.Column="2"  Text ="{Binding Path = Troop_6}" Background="Orange"  Width="20px" RenderTransformOrigin="0.55,2.45" Margin="39,47,38,0"/>
+		<Button Grid.Row="2" Grid.Column="2" Margin="10,27,24,17" Content="Send" Command="{Binding AttackCommand}"/>
+		<Button Grid.Row="3" Grid.Column="2" Margin="10,27,24,17" Content="Cycle Send" Command="{Binding CycleAttackCommand}"/>
+        
+         
         <Button Grid.Row="0" Content="Add Village" Margin="15,58,5,54" Command="{Binding AddCommand}" Grid.RowSpan="2"></Button>
 
 

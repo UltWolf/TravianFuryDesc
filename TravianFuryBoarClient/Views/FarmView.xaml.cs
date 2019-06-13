@@ -19,8 +19,13 @@ namespace TravianFuryBoarClient.Views
             DataContext = fv;
         }
 
-       
+      
 
-       
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+        }
     }
 }

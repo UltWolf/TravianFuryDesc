@@ -32,7 +32,11 @@ namespace TravianFuryBoarClient
         {
             InitializeComponent();
             dictUser =   getUserData();
-            if(dictUser.Count==0)
+            if(dictUser==null)
+            {
+                DU = CreateDefaultUser();
+            }
+            else if (dictUser.Count == 0 )
             {
                 DU = CreateDefaultUser();
             }
@@ -152,7 +156,16 @@ namespace TravianFuryBoarClient
             }
             if (listUser.ContainsKey(ServerLabel.Text))
             {
-                listUser[ServerLabel.Text].Add(HeroLabel.Text, KeyLabel.Text);
+                
+                var hero = listUser[ServerLabel.Text][HeroLabel.Text];
+                if (hero!=null)
+                {
+                    listUser[ServerLabel.Text][HeroLabel.Text] = KeyLabel.Text;
+                }
+                else
+                {
+                    listUser[ServerLabel.Text].Add(HeroLabel.Text, KeyLabel.Text);
+                }
             }
             else
             {  Dictionary<string, string> InsideValues = new Dictionary<string, string>();

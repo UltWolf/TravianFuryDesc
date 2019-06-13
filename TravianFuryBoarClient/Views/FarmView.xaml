@@ -60,7 +60,7 @@
         
          
         <Button Grid.Row="0" Content="Add Village" Margin="15,58,5,54" Command="{Binding AddCommand}" Grid.RowSpan="2"></Button>
-
+        <Button Grid.Row="3" Width="70px" Height="20px" Content="Back" Click="Back"></Button>
 
     </Grid>
 </Window>

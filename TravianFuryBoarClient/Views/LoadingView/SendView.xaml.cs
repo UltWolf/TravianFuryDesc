@@ -65,7 +65,7 @@ namespace TravianFuryBoarClient.Views
 
                 string sessionKey = "}},\"session\":\"" + key + "\"}";
                 string fullrequest = actionRequest + paramsRequest + unitsRequest + sessionKey;
-                WebRequest WR = WebRequest.Create(ServerUrl +"api/?");
+                WebRequest WR = WebRequest.Create(ServerUrl +"/api/?");
                 WR.Method = "POST";
                 Dispatcher.Invoke(() =>
                 {
